@@ -2,6 +2,7 @@
 
 namespace ConsoleApp27.Model
 {
+    //TODO: Дописать сущности
     internal abstract class EntityBase
     {
         [Key]
@@ -14,7 +15,6 @@ namespace ConsoleApp27.Model
             Id = Guid.NewGuid();
             CreatData = DateTime.UtcNow;
             ModifiedData = DateTime.UtcNow;
-
         }
 
     }

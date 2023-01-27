@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp27.Service
 {
-    internal class UserService : IUserService
+    //TODO: Реализовать функции интерфейса
+    internal class UserService : IService<User>
     {
         private ApplicationContext applicationContext;
         public Task<int> AddUserAsync(User user)
@@ -31,8 +32,7 @@ namespace ConsoleApp27.Service
         {
             throw new NotImplementedException();
         }
-
-        public Task<int> UpdateUserAsync(User User)
+        public Task<int> UpdateUserAsync(User t)
         {
             throw new NotImplementedException();
         }
