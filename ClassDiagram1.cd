@@ -1,2 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ConsoleApp27.Model.EntityBase" Collapsed="true">
+    <Position X="6.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAgAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\EntityBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsoleApp27.Model.TemplateMessage">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Model\TemplateMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsoleApp27.Model.User">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ACBAAAAAAAAAAAAAAAAAAAQAAAAAAgAAAUAAAAAEAAA=</HashCode>
+      <FileName>Model\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsoleApp27.Model.Value">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAQACAAAAAA=</HashCode>
+      <FileName>Model\Value.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsoleApp27.Model.Variable">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAACAAAAAAAAAAQAAAAAAAAAAAAoAAAAAAA=</HashCode>
+      <FileName>Model\Variable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ConsoleApp27.Model.VariableType">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\VariableType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
