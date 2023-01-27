@@ -15,6 +15,8 @@ namespace ConsoleApp27.Model
         public bool? IsBlocked { get; set; }
         public bool? IsStoped { get; set; }
         public bool? IsMailingAgreement { get; set; }
+        public IEnumerable<TemplateMessage>? templateMessages { get; set; }
+        public IEnumerable<Variable>? variables { get; set; }
 
         public User() {
 

@@ -16,6 +16,10 @@ namespace ConsoleApp30
     internal class ApplicationContext : DbContext
     {
         public DbSet<User> Users => Set<User>();
+        public DbSet<TemplateMessage> TemplateMessages => Set<TemplateMessage>();
+        public DbSet<Value> Values => Set<Value>();
+        public DbSet<Variable> Variables => Set<Variable>();
+
         public ApplicationContext() {
             Database.EnsureDeleted();
             Database.EnsureCreated();

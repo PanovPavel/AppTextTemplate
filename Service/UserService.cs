@@ -12,13 +12,8 @@ namespace ConsoleApp27.Service
     internal class UserService : IService<User>
     {
         private ApplicationContext applicationContext;
-        public Task<int> AddUserAsync(User user)
-        {
-            
-            throw new NotImplementedException();
-        }
 
-        public Task<int> DeleteUserAsync(int Id)
+        public Task<int> AddUserAsync(User t)
         {
             throw new NotImplementedException();
         }
@@ -32,6 +27,7 @@ namespace ConsoleApp27.Service
         {
             throw new NotImplementedException();
         }
+
         public Task<int> UpdateUserAsync(User t)
         {
             throw new NotImplementedException();
