@@ -15,15 +15,15 @@ namespace ConsoleApp30
 {
     internal class ApplicationContext : DbContext
     {
-        public DbSet<User> Users => Set<User>();
+        public DbSet<User> Users => Set<User>(); 
         public DbSet<TemplateMessage> TemplateMessages => Set<TemplateMessage>();
         public DbSet<Value> Values => Set<Value>();
-        public DbSet<Variable> Variables => Set<Variable>();
+        public DbSet<VariableTag> Variables => Set<VariableTag>();
 
         public ApplicationContext() {
             try
             {
-                Database.EnsureDeleted();
+                //Database.EnsureDeleted();
             }
             finally
             {

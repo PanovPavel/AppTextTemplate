@@ -11,52 +11,67 @@ using System.Threading.Tasks;
 namespace ConsoleApp27.Service
 {
     //TODO: Реализовать функции интерфейса
-    internal class UserService : IService<User>
+    internal class UserService
     {
-        private ApplicationContext applicationContext = new ApplicationContext();
+        //HACK: какой-то короткоживущий applucationn
+        public Guid Add(User user)
+        {
+            using (var applicationContext = new ApplicationContext())
+            {
+                applicationContext.Users.Add(user);
+                applicationContext.SaveChanges();
+                return user.Id;
+            }
+        }
+        public IEnumerable<User> GetUsers()
+        {
+            using(var applicationContext = new ApplicationContext())
+            {
+                var users = (from user in applicationContext.Users
+                             select user
+                             ).ToList<User>();
+                   return users;
 
-        public int Add(User t)
-        {
-            throw new NotImplementedException();
+            }
         }
-        public List<User> GetList()
+        public User GetUserById(Guid id)
         {
-            throw new NotImplementedException();
+            using(var applicationContext = new ApplicationContext())
+            {
+                var getedUser = (from user in applicationContext.Users
+                            where user.Id == id
+                            select user
+                            ).First();
+                return getedUser;
+            }
         }
-        public IEnumerable<User> GetById(int Id)
+        public Guid DeleteUserById(Guid id)
         {
-            throw new NotImplementedException();
+            using(var applicationContext = new ApplicationContext())
+            {
+                var userRemoved = (from user in applicationContext.Users
+                                 where user.Id == id
+                                 select user
+                ).First();
+                applicationContext.Users.Remove(userRemoved);
+                return userRemoved.Id;
+            }
         }
-
-        public int Update(User t)
+        public Guid UpdateUser(User user)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<int> AddAsync(User t)
-        {
-            return await Task.Run(() => Add(t));
-        }
-        public async Task<int> UpdateAsync(User t)
-        {
-            return await Task.Run(() => Update(t));
-        }
-        public async Task<List<User>> GetListAsync()
-        {
-            return await Task.Run(() => GetList());
-        }
-        public async Task<IEnumerable<User>> GetByIdAsync(int Id)
-        {
-            return await Task.Run(() => GetById(Id));
-        }
-        public Task DeletaAsync(User t)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(User t)
-        {
-            throw new NotImplementedException();
+            using (ApplicationContext applicationContext = new ApplicationContext())
+            {
+                if (user != null)
+                {
+                    applicationContext.Users.Update(user);
+                    return user.Id;
+                }
+                else
+                {
+                    //HACK:
+                    throw new Exception("user = null");
+                }
+            }
         }
     }
 }

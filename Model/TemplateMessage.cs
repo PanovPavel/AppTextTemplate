@@ -10,7 +10,7 @@ namespace ConsoleApp27.Model
     {
         public string? RawText { get; set; }
         public User? User { get; set; }
-        public IEnumerable<Variable>? Variables { get; set; }
+        public IEnumerable<VariableTag>? Variables { get; set; }
 
     }
 }
