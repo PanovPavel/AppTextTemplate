@@ -21,22 +21,20 @@ namespace ConsoleApp30
         public DbSet<Variable> Variables => Set<Variable>();
 
         public ApplicationContext() {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+            try
+            {
+                Database.EnsureDeleted();
+            }
+            finally
+            {
+                Database.EnsureCreated();
+            }
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            try
-            {
                 string connectString = getConnectionString();
                 optionsBuilder.UseSqlServer(connectString);
                 optionsBuilder.LogTo(message => System.Diagnostics.Debug.WriteLine(message));
-            }
-            catch(Exception ex)
-            {
-                optionsBuilder.UseSqlServer(connectString);
-                optionsBuilder.LogTo(message => System.Diagnostics.Debug.WriteLine(message));
-            }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -78,7 +76,7 @@ namespace ConsoleApp30
             builder.SetBasePath(Directory.GetCurrentDirectory());
             builder.AddJsonFile("appSettingsConnect.json");
             var config = builder.Build();
-            string connectionString = config.GetConnectionString("DefaultConnection");
+            string connectionString = config.GetConnectionString("DefaultConnection")??throw new Exception("Нет строки подключения");
             return connectionString;
         }
     }
