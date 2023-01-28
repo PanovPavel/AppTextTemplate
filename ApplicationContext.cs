@@ -26,13 +26,22 @@ namespace ConsoleApp30
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectString = getConnectionString();
-            optionsBuilder.UseSqlServer(connectString);
-            optionsBuilder.LogTo(message => System.Diagnostics.Debug.WriteLine(message));
+            try
+            {
+                string connectString = getConnectionString();
+                optionsBuilder.UseSqlServer(connectString);
+                optionsBuilder.LogTo(message => System.Diagnostics.Debug.WriteLine(message));
+            }
+            catch(Exception ex)
+            {
+                optionsBuilder.UseSqlServer(connectString);
+                optionsBuilder.LogTo(message => System.Diagnostics.Debug.WriteLine(message));
+            }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasKey(u => u.Id);
+            #region
             //Создание первоначальных данных в таблице
             {
                 /*
@@ -59,7 +68,7 @@ namespace ConsoleApp30
                 //modelBuilder.Entity<User>().Property(b => b.Name).HasMaxLength(50);
                 //Установка навигационных свойства
                 //modelBuilder.Entity<User>().HasOne(u => u.Company).WithMany(c => c.Users).HasForeignKey(u => u.CompanyInfoKey);
-
+                #endregion
 
             }
         }
@@ -69,7 +78,7 @@ namespace ConsoleApp30
             builder.SetBasePath(Directory.GetCurrentDirectory());
             builder.AddJsonFile("appSettingsConnect.json");
             var config = builder.Build();
-            string connectionString = config.GetConnectionString("DefaultConnection")??throw new Exception("Нет строки подключения");
+            string connectionString = config.GetConnectionString("DefaultConnection");
             return connectionString;
         }
     }

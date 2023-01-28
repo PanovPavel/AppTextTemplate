@@ -21,7 +21,5 @@ namespace ConsoleApp27.Service
         public int Update(T t);
         public void Delete(T t);
 
-
-
     }
 }
