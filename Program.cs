@@ -35,3 +35,5 @@ templateMessage2.User = user3;
 context.TemplateMessages.Add(templateMessage2);
 context.SaveChanges();
 
+
+
