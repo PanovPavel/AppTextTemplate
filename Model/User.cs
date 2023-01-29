@@ -21,5 +21,11 @@ namespace ConsoleApp27.Model
         public User() {
 
         }
+        public override string  ToString()
+        {
+            return $"Id: {Id} Name {Name} UserName {UserName}" +
+                $" IsBlocked {IsBlocked} IsStoped {IsStoped} IsMailingAgreement {IsMailingAgreement}";
+        }
+
     }
 }

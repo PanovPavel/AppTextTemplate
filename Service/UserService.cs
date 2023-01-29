@@ -10,7 +10,10 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp27.Service
 {
-    //TODO: Реализовать функции интерфейса
+    //TODO: Реализовать через интерфейс
+    //TODO: Сделать Task обёртку
+    //TODO: Написать собственные исключения
+    //HACK: какой-то короткоживущий applucationn
     internal class UserService
     {
         //HACK: какой-то короткоживущий applucationn
@@ -36,25 +39,42 @@ namespace ConsoleApp27.Service
         }
         public User GetUserById(Guid id)
         {
-            using(var applicationContext = new ApplicationContext())
+            try
             {
-                var getedUser = (from user in applicationContext.Users
-                            where user.Id == id
-                            select user
-                            ).First();
-                return getedUser;
+                using (var applicationContext = new ApplicationContext())
+                {
+                    var getedUser = (from user in applicationContext.Users
+                                     where user.Id == id
+                                     select user
+                                ).First();
+                    return getedUser;
+                }
+            }
+            catch
+            {
+                //HACK: 
+                throw new Exception("not find user ID");
             }
         }
         public Guid DeleteUserById(Guid id)
         {
             using(var applicationContext = new ApplicationContext())
             {
-                var userRemoved = (from user in applicationContext.Users
-                                 where user.Id == id
-                                 select user
-                ).First();
-                applicationContext.Users.Remove(userRemoved);
-                return userRemoved.Id;
+                try
+                {
+                    var userRemoved = (from user in applicationContext.Users
+                                       where user.Id == id
+                                       select user
+                    ).First();
+                    applicationContext.Users.Remove(userRemoved);
+                    applicationContext.SaveChanges();
+                    return userRemoved.Id;
+                }
+                catch
+                {
+                    //HACK: 
+                    throw new Exception("not find user ID");
+                }
             }
         }
         public Guid UpdateUser(User user)
@@ -64,6 +84,7 @@ namespace ConsoleApp27.Service
                 if (user != null)
                 {
                     applicationContext.Users.Update(user);
+                    applicationContext.SaveChanges();
                     return user.Id;
                 }
                 else
