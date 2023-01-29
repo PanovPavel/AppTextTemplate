@@ -24,7 +24,9 @@ namespace ConsoleApp27.Model
         public override string  ToString()
         {
             return $"Id: {Id} Name {Name} UserName {UserName}" +
-                $" IsBlocked {IsBlocked} IsStoped {IsStoped} IsMailingAgreement {IsMailingAgreement}";
+                $" IsBlocked {IsBlocked?.ToString() ??"null"}" +
+                $" IsStoped {IsStoped?.ToString() ?? "null"}" +
+                $" IsMailingAgreement {IsMailingAgreement?.ToString() ?? "null"}";
         }
 
     }

@@ -21,9 +21,16 @@ namespace ConsoleApp27.Service
         {
             using (var applicationContext = new ApplicationContext())
             {
-                applicationContext.Users.Add(user);
-                applicationContext.SaveChanges();
-                return user.Id;
+                if (user is not null)
+                {
+                    applicationContext.Users.Add(user);
+                    applicationContext.SaveChanges();
+                    return user.Id;
+                }else
+                {
+                    //HACK:
+                    throw new NullReferenceException("user == null");
+                }
             }
         }
         public IEnumerable<User> GetUsers()
@@ -34,7 +41,6 @@ namespace ConsoleApp27.Service
                              select user
                              ).ToList<User>();
                    return users;
-
             }
         }
         public User GetUserById(Guid id)
@@ -53,7 +59,7 @@ namespace ConsoleApp27.Service
             catch
             {
                 //HACK: 
-                throw new Exception("not find user ID");
+                throw new InvalidOperationException("not find user ID: " + id);
             }
         }
         public Guid DeleteUserById(Guid id)
@@ -73,7 +79,7 @@ namespace ConsoleApp27.Service
                 catch
                 {
                     //HACK: 
-                    throw new Exception("not find user ID");
+                    throw new InvalidOperationException("not find user ID" + id);
                 }
             }
         }
@@ -90,7 +96,7 @@ namespace ConsoleApp27.Service
                 else
                 {
                     //HACK:
-                    throw new Exception("user = null");
+                    throw new NullReferenceException("user = null");
                 }
             }
         }
